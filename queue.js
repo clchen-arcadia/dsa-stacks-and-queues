@@ -25,6 +25,28 @@ class Queue {
   size = 0;
   _list = new LinkedList();
 
+  //with .first, instead of looking for property, will retrieve this getter. 
+  //Replaces this.first = this._list.tail
+
+  get first() {
+    return this._list.head;
+  }
+  
+  get last() {
+    return this._list.tail;
+  }
+  
+  get size() {
+    return this._list.length;
+  }
+
+  /**
+   * 
+   */
+  set first(val) {
+    this.first = val;
+  }
+
   /** enqueue(val): add new value to end of the queue. Returns undefined. */
 
   enqueue(val) {
