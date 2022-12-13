@@ -15,7 +15,7 @@ class Node {
 /** Queue: chained-together nodes where you can
  *  remove from the front or add to the back. */
 
-class Queue extends LinkedList {
+class Queue {
   /** Under the hood, the data structure being used is a linked list.
    *  Enqueue adds to the head of the LL. Dequeue pops from the tail of the LL.
    */
@@ -23,26 +23,27 @@ class Queue extends LinkedList {
   first = null; // first in queue is tail of LL
   last = null; // last in queue is head of LL
   size = 0;
+  _list = new LinkedList();
 
   /** enqueue(val): add new value to end of the queue. Returns undefined. */
 
   enqueue(val) {
-    this.unshift(val);
+    this._list.unshift(val);
 
-    this.first = this.tail;
-    this.last = this.head;
-    this.size = this.length;
+    this.first = this._list.tail;
+    this.last = this._list.head;
+    this.size = this._list.length;
   }
 
   /** dequeue(): remove the node from the start of the queue
    * and return its value. Should throw an error if the queue is empty. */
 
   dequeue() {
-    const output = this.pop();
+    const output = this._list.pop();
 
-    this.first = this.tail;
-    this.last = this.head;
-    this.size = this.length;
+    this.first = this._list.tail;
+    this.last = this._list.head;
+    this.size = this._list.length;
 
     return output;
   }
@@ -50,13 +51,14 @@ class Queue extends LinkedList {
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
+    if (this.size === 0) return null;
     return this.first.val;
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-    if (this.length === 0) return true;
+    if (this.size === 0) return true;
     return false;
   }
 }
